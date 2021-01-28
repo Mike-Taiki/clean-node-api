@@ -6,7 +6,7 @@ export class SignupController implements Controller {
   private readonly emailValidator: EmailValidator
   private readonly addAccount: AddAccount
 
-  constructor(emailValidator: EmailValidator, AddAccount: AddAccount) {
+  constructor (emailValidator: EmailValidator, AddAccount: AddAccount) {
     this.emailValidator = emailValidator
     this.addAccount = AddAccount
   }
@@ -15,11 +15,12 @@ export class SignupController implements Controller {
     try {
       const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
       for (const field of requiredFields) {
-        if (!httpRequest.body[field]){
+        const hasField: string | undefined = httpRequest.body[field]
+        if (hasField === undefined) {
           return badRequest(new MissingParamError(field))
         }
       }
-      const { name, email, password, passwordConfirmation } = httpRequest.body     
+      const { name, email, password, passwordConfirmation } = httpRequest.body
       if (password !== passwordConfirmation) {
         return badRequest(new InvalidParamError('passwordConfirmation'))
       }
@@ -33,7 +34,8 @@ export class SignupController implements Controller {
         password
       })
       return ok(account)
-    } catch(error) {
+    } catch (error) {
+      console.error(error)
       return serverError()
     }
   }
