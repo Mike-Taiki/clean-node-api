@@ -7,7 +7,8 @@ export class SignupController {
     const requiredFields = [
       'name',
       'email',
-      'password'
+      'password',
+      'passwordConfirmation'
     ]
 
     for (const field of requiredFields) {
