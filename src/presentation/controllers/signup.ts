@@ -6,7 +6,8 @@ export class SignupController {
   handle (httpRequest: HttpRequest): HttpResponse {
     const requiredFields = [
       'name',
-      'email'
+      'email',
+      'password'
     ]
 
     for (const field of requiredFields) {
