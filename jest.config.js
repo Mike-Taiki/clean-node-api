@@ -9,6 +9,8 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
   preset: '@shelf/jest-mongodb',
+  testEnvironment: 'node',
+  globalTeardown: '<rootDir>/test-teardown-globals.js',
   transform: {
     '.+\\.ts$': 'ts-jest'
   }
